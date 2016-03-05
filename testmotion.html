@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- Javascripts--> <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["motionchart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        
+        data.addColumn('string', 'Organization');
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Grant')
+        //data.addColumn('string', 'Year 7/8');
+
+        //data.addColumn('string', 'Year 9/10');
+        //data.addColumn('string', 'Year 11/12');
+        //data.addColumn('string', 'Year 13/14');
+        testdata(data);
+        //data.addColumn('string', 'Fruit');
+        //data.addColumn('date', 'Date');
+        //data.addColumn('number', 'Sales');
+        //data.addColumn('number', 'Expenses');
+        //data.addColumn('string', 'Location');
+}
+function testdata(dataP){
+alert("hey");
+
+this.dataPoint = dataP;
+self = this;
+ //var spreadsheetID = "1qJkMIZfa7LK44-hfEnjBTbVl1mNQqS5bv-kGDdUnW4U";
+ var spreadsheetID = "102eIh5x9MJNMmKri6gKsq6F4Sdu9CUw4GWO1vpexWdY";
+ // Make sure it is public or set to Anyone with link can view 
+ var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+ 
+ $.getJSON(url, function(data) {
+ var allData = [];
+ var data04 = [];
+ var data05 = [];
+ var data06 = [];
+ var data07 = [];
+ var data08 = [];
+ var data10 = [];
+ var data13 = [];
+ var data14 = [];
+ var data15 = [];
+  alert("afdsf");
+  alert(JSON.stringify(data));
+  var entry = data.feed.entry;
+ 
+  $(entry).each(function(i, obj){
+    // Column names are name, age, etc.
+    data04.push([obj.gsx$organizations.$t, new Date(2004, 0, 1), Number(obj.gsx$year4.$t)]);
+    data05.push([obj.gsx$organizations.$t, new Date(2005, 0, 1), Number(obj.gsx$year5.$t)]);
+    data06.push([obj.gsx$organizations.$t, new Date(2006, 0, 1), Number(obj.gsx$year6.$t)]);
+    data07.push([obj.gsx$organizations.$t, new Date(2007, 0, 1), Number(obj.gsx$year7.$t)]);
+    data08.push([obj.gsx$organizations.$t, new Date(2008, 0, 1), Number(obj.gsx$year8.$t)]);
+    data10.push([obj.gsx$organizations.$t, new Date(2010, 0, 1), Number(obj.gsx$year10.$t)]);
+    data13.push([obj.gsx$organizations.$t, new Date(2013, 0, 1), Number(obj.gsx$year13.$t)]);
+    data14.push([obj.gsx$organizations.$t, new Date(2014, 0, 1), Number(obj.gsx$year14.$t)]);
+    data15.push([obj.gsx$organizations.$t, new Date(2015, 0, 1), Number(obj.gsx$year15.$t)]);
+    alert(i);
+    //allData.push([obj.gsx$organizations.$t, new Date(obj.gsx$year.$t), Number(obj.gsx$grant.$t)])
+    //alert(obj.gsx$organizations.$t);
+    //alert(i);
+    //$('.results').prepend('<h2>'+this.gsx$name.$t+'</h2><p>'+this.gsx$age.$t+'</p>');
+    if (i == entry.length - 1){
+self.dataPoint.addRows(data04);
+self.dataPoint.addRows(data05);
+self.dataPoint.addRows(data06);
+self.dataPoint.addRows(data07);
+self.dataPoint.addRows(data08);
+self.dataPoint.addRows(data10);
+self.dataPoint.addRows(data13);
+self.dataPoint.addRows(data14);
+self.dataPoint.addRows(data15);
+//allData.concat(data04);
+//allData.concat(data05);
+//allData.concat(data06);
+//allData.concat(data07);
+//allData.concat(data08);
+//allData.concat(data10);
+//allData.concat(data13);
+//allData.concat(data14);
+//allData.concat(data15);
+//alert("yeah again");
+console.log(allData);
+//alert(JSON.strigify(allData));
+
+//self.dataPoint.addRows(allData);
+
+var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+
+        chart.draw(self.dataPoint, {width: 1200, height:600});
+    }
+  });
+
+
+
+ });
+
+
+}
+
+alert("yeah man ");
+
+ 
+//testdata(data);
+
+        //data.addColumn(''
+        /*data.addRows([
+          ['Apples',  new Date (1988,0,1), 1000, 300, 'East'],
+          ['Oranges', new Date (1988,0,1), 1150, 200, 'West'],
+          ['Bananas', new Date (1988,0,1), 300,  250, 'West'],
+          ['Apples',  new Date (1989,6,1), 1200, 400, 'East'],
+          ['Oranges', new Date (1989,6,1), 750,  150, 'West'],
+          ['Bananas', new Date (1989,6,1), 788,  617, 'West']
+        ]);*/
+
+        //var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+
+        //chart.draw(data, {width: 600, height:300});
+      
+    </script>
+<!--
+<script type="text/javascript">
+$(function() {
+				
+				// Load the data from a Google Spreadsheet 
+				// https://docs.google.com/a/highsoft.com/spreadsheet/pub?hl=en_GB&hl=en_GB&key=0AoIaUO7wH1HwdFJHaFI4eUJDYlVna3k5TlpuXzZubHc&output=html
+				Highcharts.data({
+
+				    
+				    googleSpreadsheetKey: '1qJkMIZfa7LK44-hfEnjBTbVl1mNQqS5bv-kGDdUnW4U',
+				    
+				    // custom handler when the spreadsheet is parsed
+				    parsed: function(columns) {
+				    	
+				    	// Make the columns easier to read
+				    	var countryCodes = columns[0],
+				    		countryNames = columns[1],
+				    		populationDensities = columns[2];
+
+						var options = {
+							chart : {
+								renderTo : 'container',
+								borderWidth : 1,
+								zoomType: 'xy'
+							},
+							
+							title : {
+								text : 'Population density by country (/km²)'
+							},
+							
+							subtitle: {
+								text: 'This is a work in progress'
+							},
+							
+							legend: {
+								align: 'left',
+								verticalAlign: 'bottom',
+								floating: true,
+								layout: 'vertical',
+								valueDecimals: 0
+							},
+							
+							tooltip: {
+								ySuffix: '/km²'
+							},
+		
+							series : [{
+								data : [],
+								name: 'Population density',
+								valueRanges: [{
+									to: 3,
+									color: 'rgba(19,64,117,0.05)'
+								}, {
+									from: 3,
+									to: 10,
+									color: 'rgba(19,64,117,0.2)'
+								}, {
+									from: 10,
+									to: 30,
+									color: 'rgba(19,64,117,0.4)'
+								}, {
+									from: 30,
+									to: 100,
+									color: 'rgba(19,64,117,0.5)'
+								}, {
+									from: 100,
+									to: 300,
+									color: 'rgba(19,64,117,0.6)'
+								}, {
+									from: 300,
+									to: 1000,
+									color: 'rgba(19,64,117,0.8)'
+								}, {
+									from: 1000,
+									color: 'rgba(19,64,117,1)'
+								}],
+								states: {
+									hover: {
+										color: '#DD6E28'
+									}
+								}
+							}]
+						};
+		
+						// Populate the data points
+						//countryCodes = countryCodes.splice(0, 3);
+						for (var i = 1; i < countryCodes.length; i++) {
+		
+							if (shapes[countryCodes[i]]) {
+								options.series[0].data.push({
+									y : parseFloat(populationDensities[i]),
+									name : countryNames[i],
+									path : Highcharts.pathToArray(shapes[countryCodes[i]]),
+									states: {
+										hover: {
+											color: '#FF7F00' // orange
+										}
+									}
+								
+								});
+							}
+						}
+						
+						// Initiate the chart
+						chart = new Highcharts.Map(options);
+				    }
+				});
+				
+			});
+
+		</script>
+
+</script>-->
+  </head>
+  <body>
+    <div id="chart_div" style="width: 600px; height: 300px;"></div>
+  </body>
+</html>
+
